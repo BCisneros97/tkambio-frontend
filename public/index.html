@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <!-- Google font-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <!-- Required Fremwork -->
+  <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/css/bootstrap/css/bootstrap.min.css">
+  <!-- waves.css -->
+  <link rel="stylesheet" href="<%= BASE_URL %>assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+  <!-- themify-icons line icon -->
+  <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/icon/themify-icons/themify-icons.css">
+  <!-- feather icon -->
+  <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/icon/feather/css/feather.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/icon/font-awesome/css/font-awesome.min.css">
+  <!-- Style.css -->
+  <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/css/jquery.mCustomScrollbar.css">
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+  <!-- Required Jquery -->
+  <script type="text/javascript" src="<%= BASE_URL %>assets/js/jquery/jquery.min.js "></script>
+  <script type="text/javascript" src="<%= BASE_URL %>assets/js/jquery-ui/jquery-ui.min.js "></script>
+  <script type="text/javascript" src="<%= BASE_URL %>assets/js/popper.js/popper.min.js"></script>
+  <script type="text/javascript" src="<%= BASE_URL %>assets/js/bootstrap/js/bootstrap.min.js "></script>
+  <!-- waves js -->
+  <script src="<%= BASE_URL %>assets/pages/waves/js/waves.min.js"></script>
+  <!-- jquery slimscroll js -->
+  <script type="text/javascript" src="<%= BASE_URL %>assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <script src="<%= BASE_URL %>assets/js/pcoded.min.js"></script>
+  <script src="<%= BASE_URL %>assets/js/vertical/vertical-layout.min.js"></script>
+  <script src="<%= BASE_URL %>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- Custom js -->
+  <script type="text/javascript" src="<%= BASE_URL %>assets/js/script.min.js"></script>
+</body>
+
 </html>
