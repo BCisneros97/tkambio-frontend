@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AdminLayout from '../views/layout/AdminLayout.vue'
-import Inicio from '../views/Inicio.vue'
-import TipoCambio from '../views/TipoCambio.vue'
 import store from '../store';
 
 Vue.use(VueRouter)
@@ -10,18 +7,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: AdminLayout,
+    component: () => import('../views/layout/AdminLayout.vue'),
     children: [
       {
         path: '',
         name: 'Inicio',
-        component: Inicio,
+        component: () => import('../views/Inicio.vue'),
         meta: { auth: true }
       },
       {
         path: 'tipo-cambio',
         name: 'TipoCambio',
-        component: TipoCambio,
+        component: () => import('../views/TipoCambio.vue'),
         meta: { auth: true }
       }
     ]
