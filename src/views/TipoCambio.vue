@@ -80,50 +80,14 @@
       </div>
     </div>
 
-    <app-modal ref="modal" titulo="Tipo de cambio" v-model="mostrarModal">
-      <form @submit.prevent="guardar">
-        <div class="form-group">
-          <label id="tc_compra">Compra</label>
-          <input
-            type="number"
-            v-model="tipoCambio.tc_compra"
-            id="tc_compra"
-            name="tc_compra"
-            class="form-control form-control-primary"
-            min="0"
-            step="0.001"
-            required
-          />
-          <span class="form-bar"></span>
-        </div>
-        <div class="form-group">
-          <label for="tc_venta">Venta</label>
-          <input
-            type="number"
-            v-model="tipoCambio.tc_venta"
-            id="tc_venta"
-            name="tc_venta"
-            class="form-control form-control-primary"
-            min="0"
-            step="0.001"
-            required
-          />
-        </div>
-      </form>
-
-      <template v-slot:footer>
-        <button type="button" class="btn btn-primary" @click="guardar">
-          Guardar
-        </button>
-      </template>
-    </app-modal>
+    <app-tipo-cambio-form :tipo-cambio="tipoCambio" v-model="mostrarForm" @guardar="guardar"></app-tipo-cambio-form>
   </div>
 </template>
 
 <script>
 import tipoCambioService from "@/services/tipo-cambio.service.js";
 import TipoCambio from "@/models/tipo-cambio.model.js";
-import Modal from "@/components/Modal.vue";
+import TipoCambioForm from "@/components/TipoCambioForm.vue";
 import { customDateTimeFormat } from '@/services/datetime-format.service.js';
 import {
   confirmDialog,
@@ -134,12 +98,12 @@ import {
 export default {
   name: "TipoCambio",
   components: {
-    "app-modal": Modal,
+    "app-tipo-cambio-form": TipoCambioForm
   },
   data() {
     return {
       listadoTC: [],
-      mostrarModal: false,
+      mostrarForm: false,
       tipoCambio: new TipoCambio(),
     };
   },
@@ -168,11 +132,11 @@ export default {
     },
     nuevo() {
       this.tipoCambio = new TipoCambio();
-      this.mostrarModal = true;
+      this.mostrarForm = true;
     },
     editar(item) {
       Object.assign(this.tipoCambio, item);
-      this.mostrarModal = true;
+      this.mostrarForm = true;
     },
     guardar() {
       const serviceMethod = this.tipoCambio.id
@@ -182,7 +146,7 @@ export default {
       serviceMethod
         .then(() => {
           this.listar();
-          this.mostrarModal = false;
+          this.mostrarForm = false;
           this.tipoCambio = new TipoCambio();
           successDialog(
             "TC guardado",
