@@ -9,7 +9,7 @@ const setUser = (user) => {
 }
 
 const removeUser = () => {
-  return localStorage.removeItem(userKey);
+  localStorage.removeItem(userKey);
 }
 
 export {
