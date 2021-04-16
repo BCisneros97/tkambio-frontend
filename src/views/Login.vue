@@ -24,6 +24,7 @@
                     placeholder="Email"
                     v-model="user.email"
                     class="form-control"
+                    required
                   />
                   <span class="form-bar"></span>
                 </div>
@@ -34,6 +35,7 @@
                     placeholder="Contraseña"
                     v-model="user.password"
                     class="form-control"
+                    required
                   />
                   <span class="form-bar"></span>
                 </div>
@@ -83,17 +85,15 @@ export default {
     login() {
       this.cargando = true;
 
-      if (this.user.email && this.user.password) {
-        this.$store.dispatch("auth/login", this.user).then(
-          () => {
-            this.$router.push("/");
-          },
-          (error) => {
-            this.cargando = false;
-            this.mensaje = error.error;
-          }
-        );
-      }
+      this.$store.dispatch("auth/login", this.user).then(
+        () => {
+          this.$router.push("/");
+        },
+        (error) => {
+          this.cargando = false;
+          this.mensaje = error.error;
+        }
+      );
     },
   },
 };

@@ -12,7 +12,7 @@
             alt="User-Profile-Image"
           />
           <div class="user-details">
-            <span id="more-details">{{ currentUser.name }}</span>
+            <span id="more-details">{{ currentUser.name }} ({{ currentUser.rol }})</span>
           </div>
         </div>
       </div>

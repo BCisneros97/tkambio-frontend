@@ -25,6 +25,7 @@
                   </div>
                   <div class="card-block table-border-style pt-0">
                     <button
+                      v-if="opcionesAdmin"
                       type="button"
                       class="btn btn-success mb-3"
                       @click="nuevo"
@@ -35,11 +36,11 @@
                       <table class="table table-sm table-hover">
                         <thead>
                           <tr>
-                            <th>Id</th>
-                            <th>Creado el</th>
-                            <th>Compra</th>
-                            <th>Venta</th>
-                            <th>Opciones</th>
+                            <th class="font-weight-bold">Id</th>
+                            <th class="font-weight-bold">Creado el</th>
+                            <th class="font-weight-bold">Compra</th>
+                            <th class="font-weight-bold">Venta</th>
+                            <th class="font-weight-bold">Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -49,20 +50,22 @@
                             <td>{{ item.tc_compra }}</td>
                             <td>{{ item.tc_venta }}</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn btn-sm btn-primary"
-                                @click="editar(item)"
-                              >
-                                <i class="fa fa-pencil"></i>
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-sm btn-danger"
-                                @click="eliminar(item.id)"
-                              >
-                                <i class="fa fa-trash"></i>
-                              </button>
+                              <template v-if="opcionesAdmin">
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-primary"
+                                  @click="editar(item)"
+                                >
+                                  <i class="fa fa-pencil"></i>
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-danger"
+                                  @click="eliminar(item.id)"
+                                >
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                              </template>
                             </td>
                           </tr>
                         </tbody>
@@ -143,6 +146,15 @@ export default {
   mounted() {
     this.listar();
   },
+  computed: {
+    currentUser() {
+      const authUser = this.$store.state.auth.user
+      return authUser ? authUser.user : {};
+    },
+    opcionesAdmin() {
+      return this.currentUser.rol === 'admin';
+    }
+  },
   filters: {
     fechaConFormato(fecha) {
       return customDateTimeFormat(fecha);
@@ -186,7 +198,7 @@ export default {
     },
     eliminar(id) {
       confirmDialog(
-        "¿Desea eliminar el tipo de cambio?",
+        `¿Desea eliminar el tipo de cambio #${id}?`,
         "Sí, eliminar",
         "No, cancelar"
       )
@@ -196,7 +208,7 @@ export default {
               this.listar();
               successDialog(
                 "TC eliminado",
-                "El tipo de cambio se eliminó correctamente."
+                `El tipo de cambio #${id} se eliminó correctamente.`
               );
             });
           }
