@@ -17,18 +17,17 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Nav from "@/components/Nav.vue";
+import Header from "@/views/layout/Header.vue";
+import Nav from "@/views/layout/Nav.vue";
 
 export default {
-  name: "Admin",
+  name: "AdminLayout",
   components: {
     "app-header": Header,
     "app-nav": Nav
   },
   mounted() {
     if (this.$store.state.auth.status.loggedIn) {
-      console.log('eliminando');
       window.reload_js('pcodedJs');
       setTimeout(() => window.reload_js('themeJs'), 100);
     }

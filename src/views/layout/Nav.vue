@@ -8,7 +8,7 @@
         <div class="main-menu-header">
           <img
             class="img-80 img-radius"
-            src="../assets/avatar-4.jpg"
+            src="@/assets/avatar-4.jpg"
             alt="User-Profile-Image"
           />
           <div class="user-details">

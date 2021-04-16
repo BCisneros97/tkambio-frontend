@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Admin from '../views/Admin.vue'
+import AdminLayout from '../views/layout/AdminLayout.vue'
 import Inicio from '../views/Inicio.vue'
 import TipoCambio from '../views/TipoCambio.vue'
 import store from '../store';
@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: Admin,
+    component: AdminLayout,
     children: [
       {
         path: '',

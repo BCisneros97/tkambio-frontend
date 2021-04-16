@@ -6,7 +6,7 @@
         <router-link to="/">
           <img
             class="img-fluid"
-            src="../assets/logo-tkambio.svg"
+            src="@/assets/logo-tkambio.svg"
             width="170px"
             style="padding-left: 30px"
             alt="Theme-Logo"
