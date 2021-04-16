@@ -1,64 +1,11 @@
 <template>
-  <div id="pcoded" class="pcoded">
+  <div id="pcoded" class="pcoded" fream-type="theme1" vertical-nav-type="expanded" theme-layout="vertical" nav-type="st2" vertical-placement="left" vertical-effect="shrink">
     <div class="pcoded-overlay-box"></div>
     <div class="pcoded-container navbar-wrapper">
       <app-header></app-header>
-
-      <div class="pcoded-main-container">
+      <div class="pcoded-main-container" style="margin-top: 56px;">
         <div class="pcoded-wrapper">
-          <nav class="pcoded-navbar">
-            <div class="sidebar_toggle">
-              <a href="#"><i class="icon-close icons"></i></a>
-            </div>
-            <div class="pcoded-inner-navbar main-menu">
-              <div class="">
-                <div class="main-menu-header">
-                  <img
-                    class="img-80 img-radius"
-                    src="../assets/avatar-4.jpg"
-                    alt="User-Profile-Image"
-                  />
-                  <div class="user-details">
-                    <span id="more-details"
-                      >John Doe<i class="fa fa-caret-down"></i
-                    ></span>
-                  </div>
-                </div>
-                <div class="main-menu-content">
-                  <ul>
-                    <li class="more-details">
-                      <a href="auth-normal-sign-in.html"
-                        ><i class="ti-layout-sidebar-left"></i>Cerrar sesión</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <ul class="pcoded-item pcoded-left-item">
-                <li class="">
-                  <router-link to="/" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"
-                      ><i class="ti-home"></i><b>D</b></span
-                    >
-                    <span class="pcoded-mtext">Inicio</span>
-                    <span class="pcoded-mcaret"></span>
-                  </router-link>
-                </li>
-                <li class="">
-                  <router-link
-                    to="/tipo-cambio"
-                    class="waves-effect waves-dark"
-                  >
-                    <span class="pcoded-micon"
-                      ><i class="ti-bar-chart-alt"></i><b>C</b></span
-                    >
-                    <span class="pcoded-mtext">Tipo de Cambio</span>
-                    <span class="pcoded-mcaret"></span>
-                  </router-link>
-                </li>
-              </ul>
-            </div>
-          </nav>
+          <app-nav></app-nav>
 
           <router-view />
 
@@ -71,11 +18,20 @@
 
 <script>
 import Header from "@/components/Header.vue";
+import Nav from "@/components/Nav.vue";
 
 export default {
   name: "Admin",
   components: {
-    'app-header': Header,
+    "app-header": Header,
+    "app-nav": Nav
+  },
+  mounted() {
+    if (this.$store.state.auth.status.loggedIn) {
+      console.log('eliminando');
+      window.reload_js('pcodedJs');
+      setTimeout(() => window.reload_js('themeJs'), 100);
+    }
   }
 };
 </script>

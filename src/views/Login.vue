@@ -6,7 +6,7 @@
         <div class="col-sm-12">
           <!-- Authentication card start -->
 
-          <form class="md-float-material form-material">
+          <form class="md-float-material form-material" @submit.prevent="login">
             <div class="text-center">
               <img src="../assets/logo-tkambio.svg" />
             </div>
@@ -18,19 +18,36 @@
                   </div>
                 </div>
                 <div class="form-group form-primary">
-                  <input type="text" name="email" class="form-control" />
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    v-model="user.email"
+                    class="form-control"
+                  />
                   <span class="form-bar"></span>
-                  <label class="float-label">Usuario o email</label>
                 </div>
                 <div class="form-group form-primary">
-                  <input type="password" name="password" class="form-control" />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Contraseña"
+                    v-model="user.password"
+                    class="form-control"
+                  />
                   <span class="form-bar"></span>
-                  <label class="float-label">Contraseña</label>
+                </div>
+                <div v-if="mensaje.length > 0" class="row m-t-30">
+                  <div class="col-md-12">
+                    <div class="alert alert-danger mb-0" role="alert">
+                      {{ mensaje }}
+                    </div>
+                  </div>
                 </div>
                 <div class="row m-t-30">
                   <div class="col-md-12">
                     <button
-                      type="button"
+                      type="submit"
                       class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20"
                     >
                       Ingresar
@@ -51,7 +68,33 @@
 </template>
 
 <script>
+import UserLogin from "@/models/user-login.model";
+
 export default {
   name: "Login",
+  data() {
+    return {
+      user: new UserLogin(),
+      cargando: false,
+      mensaje: "",
+    };
+  },
+  methods: {
+    login() {
+      this.cargando = true;
+
+      if (this.user.email && this.user.password) {
+        this.$store.dispatch("auth/login", this.user).then(
+          () => {
+            this.$router.push("/");
+          },
+          (error) => {
+            this.cargando = false;
+            this.mensaje = error.error;
+          }
+        );
+      }
+    },
+  },
 };
 </script>
